@@ -8,6 +8,13 @@ app = Flask(__name__)
 genai.configure(api_key="AIzaSyB4Rf8wINhYnBkeyQO_NKPHhh2WyotEDTs")
 model = genai.GenerativeModel("gemini-2.5-flash")
 
+@app.route('/')
+def home():
+    return """
+    <h2>✅ Gemini API is Running!</h2>
+    <p>Use <code>/extract</code> endpoint with POST method and image file.</p>
+    """
+
 @app.route('/extract', methods=['POST'])
 def extract_info():
     if 'image' not in request.files:
@@ -40,7 +47,7 @@ def extract_info():
                 "data": image_bytes
             }
         ])
-        result_text = response.text.strip()
+        result_text = (response.text or "").strip()
 
         result = {}
         for line in result_text.splitlines():
@@ -54,4 +61,4 @@ def extract_info():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=3000)
