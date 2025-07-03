@@ -8,6 +8,10 @@ app = Flask(__name__)
 genai.configure(api_key="AIzaSyB4Rf8wINhYnBkeyQO_NKPHhh2WyotEDTs")
 model = genai.GenerativeModel("gemini-2.5-flash")
 
+@app.before_request
+def show_routes():
+    print(f"Incoming request to {request.path}")
+
 @app.route('/')
 def home():
     return """
