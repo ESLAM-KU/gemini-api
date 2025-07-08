@@ -5,7 +5,7 @@ import mimetypes
 app = Flask(__name__)
 
 # إعداد مفتاح API
-genai.configure(api_key="AIzaSyB4Rf8wINhYnBkeyQO_NKPHhh2WyotEDTs")
+genai.configure(api_key="AIzaSyA2tK4v03-CGsMOmc0xA4xsiLfT77nDPxY")
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 # لوج لأي طلب بيخش السيرفر
